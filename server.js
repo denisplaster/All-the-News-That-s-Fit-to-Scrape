@@ -1,37 +1,56 @@
-const axios = require('axios');
-const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 5000;
-const path = require('path');
+// Dependencies
+var express = require("express");
+var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
+var exphbs = require("express-handlebars");
+// Requiring Comment and Article models
+var Comment = require("./models/Comment.js");
+var Article = require("./models/Article.js");
+// Requiring routing controllers
+var htmlRouter = require("./controllers/html-routes.js");
+var articleRouter = require("./controllers/article-routes.js");
+// Scraping tools
+var request = require("request");
+var cheerio = require("cheerio");
+// Set mongoose to leverage built in JavaScript ES6 Promises
+mongoose.Promise = Promise;
 
-const handlebars = require('express-handlebars');
+// Initialize Express
+var port = process.env.PORT || 3000;
+var app = express();
 
-app.engine('.hbs', handlebars({ extname: '.hbs' }));
+// Use body parser with the app
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
-app.set("PORT", PORT);
+// Initialize Handlebars
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
-app.use(express.static(path.join(__dirname, 'assets')));
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', '.hbs');
+// Routing
+app.use("/", htmlRouter);
+app.use("/", articleRouter);
 
-app.get('/', function (req, res) {
-    let url = `https://indreed.herokuapp.com/api/jobs?q=web+developer&limit=50`;
-    axios({
-        method: 'get',
-        url
-    })
-        .then(function (response) {
-            let jobs = response.data;
-            res.render("index", { title: "News Scraper App", jobs: jobs });
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+// Make public a static dir
+app.use(express.static("public"));
 
+// Database configuration with mongoose
+var URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/news-scraper'; 
+mongoose.connect(URI);
+var db = mongoose.connection;
+
+// Show any mongoose errors
+db.on("error", function(error) {
+  console.log("Mongoose Error: ", error);
 });
 
-app.listen(app.get('PORT'), function () {
-    console.log('Express started on http://localhost:' +
-        app.get('PORT') + '; press Ctrl-C to terminate.');
+// Once logged in to the db through mongoose, log a success message
+db.once("open", function() {
+  console.log("Mongoose connection successful.");
 });
 
+// Listen on port 3000
+app.listen(port, function() {
+  console.log("App running on port 3000!");
+});
