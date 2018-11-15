@@ -28,7 +28,7 @@ const ArticleSchema = new Schema({
 });
 
 // Create the Article model with the ArticleSchema
-const Article = mongoose.model("Article", ArticleSchema);
+const Article = mongoose.model("article", ArticleSchema);
 
 // Export the model
 module.exports = Article;
