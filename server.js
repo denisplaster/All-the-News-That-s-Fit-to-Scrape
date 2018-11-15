@@ -37,8 +37,11 @@ app.use("/", articleRouter);
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-var URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/gamer-news'; 
-mongoose.connect(URI);
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+mongoose.connect(MONGODB_URI);
+
 var db = mongoose.connection;
 
 // Show any mongoose errors
