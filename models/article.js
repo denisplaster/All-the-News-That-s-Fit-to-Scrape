@@ -5,17 +5,15 @@ var Schema = mongoose.Schema;
 
 // Create article schema
 var ArticleSchema = new Schema({
-  // title is a required string
+  // `title` is required and of type String
   title: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
-  // description is a required string
-  description: {
+  // `link` is required and of type String
+  link: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   // boolean to flag articles as saved
   saved: {

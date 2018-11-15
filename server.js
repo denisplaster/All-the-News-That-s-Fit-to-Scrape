@@ -10,6 +10,7 @@ var Article = require("./models/Article.js");
 var htmlRouter = require("./controllers/html-routes.js");
 var articleRouter = require("./controllers/article-routes.js");
 // Scraping tools
+var axios = require("axios");
 var request = require("request");
 var cheerio = require("cheerio");
 // Set mongoose to leverage built in JavaScript ES6 Promises
@@ -36,7 +37,7 @@ app.use("/", articleRouter);
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-var URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/news-scraper'; 
+var URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/gamer-news'; 
 mongoose.connect(URI);
 var db = mongoose.connection;
 

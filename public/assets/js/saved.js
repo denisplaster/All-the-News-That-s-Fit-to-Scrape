@@ -14,7 +14,7 @@ $(document).ready(function() {
 	  	// if article has been marked as saved
 	  	if (data[i].saved === true) {
 				// Display the information on the page
-	   		$("#saved-results").append("<div class='saved-div'><p class='saved-text'>" + data[i].title + "<br>" + data[i].description +
+	   		$("#saved-results").append("<div class='saved-div'><p class='saved-text'>" + data[i].title + "<br>" + data[i].link +
   																	"</p><a class='unsave-button button is-danger is-medium' data-id='" +
 																		data[i]._id + "'>Remove</a><a class='comments-button button is-info is-medium' data-id='" + data[i]._id +
 																		"'><span class='icon'><i class='fa fa-comments'></i></span>Comments</a></div>");
