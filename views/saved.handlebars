@@ -1,8 +1,8 @@
 <nav class="navbar ">
   <div class="navbar-brand">
-    <div class="navbar-item">
-      <img src="/assets/img/npr-logo.jpg" alt="NPR Logo">
-    </div>  
+      <div class="navbar-item">
+      <h4>News Scraper</h4>
+    </div> 
     <div class="navbar" data-target="navMenu">
       <span></span>
       <span></span>
@@ -31,11 +31,8 @@
         </ul>
       </div>
       <h1 id="hero-title" class="title">
-        News Scraper
+       <img src="/assets/img/Game_Informer_Logo.png" alt="Game Informer Logo">
       </h1>
-      <h2 class="subtitle">
-        NPR News
-      </h2>
     </div>
   </div>
 </section>
@@ -71,14 +68,17 @@
         <p>Write the first comment for this article.</p>
       </div>
       <hr>
-      <div>
-        <textarea id="new-comment-field"></textarea>
-      </div>
+   <div class="modal-body">
+	 <ul class="list-group"></ul>
+	 <textarea name="note" class="note-content"></textarea>
+ </div>
     </section>
-    <footer class="modal-card-foot">
-      {{!-- Save comment button dynamically rendered to include data-id attribute of article--}}
-    </footer>
+ <div class="modal-footer">
+	 <button type="button" data-id="${data._id}" class="btn btn-primary btn-save-note">Save Note</button>
+	 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+ </div>
   </div>
 </div>
+
 
 <script src="/assets/js/saved.js"></script>
