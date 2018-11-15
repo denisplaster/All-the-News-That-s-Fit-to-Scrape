@@ -5,7 +5,7 @@ var mongoose = require("mongoose");
 var exphbs = require("express-handlebars");
 // Requiring Comment and Article models
 var Comment = require("./models/Comment.js");
-var Article = require("./models/Article.js");
+var Article = require("./models/Article");
 // Requiring routing controllers
 var htmlRouter = require("./controllers/html-routes.js");
 var articleRouter = require("./controllers/article-routes.js");
