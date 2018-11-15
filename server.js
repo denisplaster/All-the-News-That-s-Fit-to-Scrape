@@ -11,7 +11,6 @@ var htmlRouter = require("./controllers/html-routes.js");
 var articleRouter = require("./controllers/article-routes.js");
 // Scraping tools
 var axios = require("axios");
-var request = require("request");
 var cheerio = require("cheerio");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
